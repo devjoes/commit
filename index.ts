@@ -1,3 +1,4 @@
+console.log("FML!");
 import * as core from "@actions/core";
 
 core.info("index.ts");
