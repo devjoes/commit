@@ -29,6 +29,7 @@ export default async function run(): Promise<void> {
 		// Load ref details
 		const ref = new Ref(repo, getInput("ref", { default: repo.defaultBranchRef }));
 
+		core.debug("ref:" + JSON.stringify(ref));
 		await ref.load();
 		core.debug("ref loaded");
 

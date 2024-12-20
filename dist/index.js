@@ -8442,6 +8442,7 @@ var ref_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
     });
 };
 
+
 class Ref extends Resource {
     constructor(repo, ref) {
         super();
@@ -8474,6 +8475,7 @@ class Ref extends Resource {
           }
         }
       }`, { owner: this.repo.owner, name: this.repo.name, ref: this.ref });
+            core.debug(JSON.stringify({ response }));
             this.name = response.data.data.repository.ref.name;
             this.prefix = response.data.data.repository.ref.prefix;
             this.commitOid = response.data.data.repository.ref.commit.oid;
@@ -8485,7 +8487,9 @@ class Ref extends Resource {
         return ref_awaiter(this, void 0, void 0, function* () {
             // Update ref
             // Via: PATCH https://api.github.com/repos/$GITHUB_REPOSITORY/git/$REF
-            yield this.github.patch(`/repos/${this.repo.nameWithOwner}/git/${this.fullyQualifiedName}`, { sha });
+            yield this.github.patch(`/repos/${this.repo.nameWithOwner}/git/${this.fullyQualifiedName}`, {
+                sha,
+            });
         });
     }
 }
@@ -8706,6 +8710,7 @@ function run() {
             const commitMessage = getInput("commit-message");
             // Load ref details
             const ref = new Ref(repo, getInput("ref", { default: repo.defaultBranchRef }));
+            core.debug("ref:" + JSON.stringify(ref));
             yield ref.load();
             core.debug("ref loaded");
             // Expand files to an array of "blobs", which will be created on GitHub via the create blob API
