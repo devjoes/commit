@@ -10,8 +10,10 @@ import { Commit } from "./lib/commit";
 export default async function run(): Promise<void> {
   try {
     // Get repo
+    core.debug(process.env.GITHUB_REPOSITORY);
     const repo = new Repo(process.env.GITHUB_REPOSITORY);
     await repo.load();
+    core.debug('repo loaded');
 
     // Get inputs
     const files = getInput("files");
@@ -25,7 +27,9 @@ export default async function run(): Promise<void> {
       repo,
       getInput("ref", { default: repo.defaultBranchRef })
     );
+    
     await ref.load();
+    core.debug('ref loaded');
 
     // Expand files to an array of "blobs", which will be created on GitHub via the create blob API
     const blobs = getBlobsFromFiles(repo, files, { baseDir });
