@@ -8431,6 +8431,8 @@ class Repo extends Resource {
     }
 }
 
+// EXTERNAL MODULE: external "util"
+var external_util_ = __nccwpck_require__(9023);
 ;// CONCATENATED MODULE: ./lib/ref.ts
 var ref_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -8441,6 +8443,7 @@ var ref_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+
 
 
 class Ref extends Resource {
@@ -8475,7 +8478,7 @@ class Ref extends Resource {
           }
         }
       }`, { owner: this.repo.owner, name: this.repo.name, ref: this.ref });
-            core.debug(JSON.stringify({ response }));
+            core.debug((0,external_util_.inspect)(response));
             this.name = response.data.data.repository.ref.name;
             this.prefix = response.data.data.repository.ref.prefix;
             this.commitOid = response.data.data.repository.ref.commit.oid;

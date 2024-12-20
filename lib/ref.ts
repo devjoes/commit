@@ -1,4 +1,5 @@
 import * as core from "@actions/core";
+import { inspect } from "util";
 import Resource from "./resource";
 import { Repo } from "./repo";
 
@@ -57,7 +58,7 @@ export class Ref extends Resource {
       }`,
 			{ owner: this.repo.owner, name: this.repo.name, ref: this.ref }
 		);
-		core.debug(JSON.stringify({ response }));
+		core.debug(inspect(response));
 		this.name = (response.data as ResponseShape).data.repository.ref.name;
 		this.prefix = (response.data as ResponseShape).data.repository.ref.prefix;
 		this.commitOid = (response.data as ResponseShape).data.repository.ref.commit.oid;
