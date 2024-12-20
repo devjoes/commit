@@ -8702,7 +8702,7 @@ function run() {
         core.debug("index.ts run");
         try {
             // Get repo
-            const repoName = getInput("workspace", {
+            const repoName = getInput("repo", {
                 default: process.env.GITHUB_REPOSITORY,
             });
             core.debug("GITHUB_REPOSITORY:" + repoName);

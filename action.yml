@@ -9,7 +9,12 @@ inputs:
     description: |
       Base directory containing files to be committed, defaults to the GitHub workspace directory path, $GITHUB_WORKSPACE.
     required: false
-    default: ''
+    default: ""
+  repo:
+    description: |
+      Repo to commit to, defaults to the current repo, $GITHUB_REPOSITORY.
+    required: false
+    default: ""
   commit-message:
     description: |
       Commit message to be used
@@ -18,7 +23,7 @@ inputs:
     description: |
       Reference to be updated with commit. This reference must already exist. Defaults to the repository's default branch ref.
     required: false
-    default: ''
+    default: ""
 outputs:
   commit-sha:
     description: SHA of created commit
