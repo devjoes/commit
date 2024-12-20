@@ -10,7 +10,7 @@ import { Commit } from "./lib/commit";
 export default async function run(): Promise<void> {
   try {
     // Get repo
-    core.debug(process.env.GITHUB_REPOSITORY);
+    core.debug('GITHUB_REPOSITORY:' + process.env.GITHUB_REPOSITORY);
     const repo = new Repo(process.env.GITHUB_REPOSITORY);
     await repo.load();
     core.debug('repo loaded');
