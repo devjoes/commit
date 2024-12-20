@@ -8490,9 +8490,11 @@ class Ref extends Resource {
         return ref_awaiter(this, void 0, void 0, function* () {
             // Update ref
             // Via: PATCH https://api.github.com/repos/$GITHUB_REPOSITORY/git/$REF
+            core.debug(`update /repos/${this.repo.nameWithOwner}/git/${this.fullyQualifiedName} ${sha}`);
             yield this.github.patch(`/repos/${this.repo.nameWithOwner}/git/${this.fullyQualifiedName}`, {
                 sha,
             });
+            core.debug("updated");
         });
     }
 }

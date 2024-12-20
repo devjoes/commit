@@ -71,8 +71,10 @@ export class Ref extends Resource {
 	async update(sha: string): Promise<void> {
 		// Update ref
 		// Via: PATCH https://api.github.com/repos/$GITHUB_REPOSITORY/git/$REF
+		core.debug(`update /repos/${this.repo.nameWithOwner}/git/${this.fullyQualifiedName} ${sha}`);
 		await this.github.patch(`/repos/${this.repo.nameWithOwner}/git/${this.fullyQualifiedName}`, {
 			sha,
 		});
+		core.debug("updated");
 	}
 }
