@@ -8702,8 +8702,11 @@ function run() {
         core.debug("index.ts run");
         try {
             // Get repo
-            core.debug("GITHUB_REPOSITORY:" + process.env.GITHUB_REPOSITORY);
-            const repo = new Repo(process.env.GITHUB_REPOSITORY);
+            const repoName = getInput("workspace", {
+                default: process.env.GITHUB_REPOSITORY,
+            });
+            core.debug("GITHUB_REPOSITORY:" + repoName);
+            const repo = new Repo(repoName);
             yield repo.load();
             core.debug((0,external_util_.inspect)(repo));
             core.debug("repo loaded");

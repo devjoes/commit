@@ -15,8 +15,11 @@ export default async function run(): Promise<void> {
 	core.debug("index.ts run");
 	try {
 		// Get repo
-		core.debug("GITHUB_REPOSITORY:" + process.env.GITHUB_REPOSITORY);
-		const repo = new Repo(process.env.GITHUB_REPOSITORY);
+		const repoName = getInput("workspace", {
+			default: process.env.GITHUB_REPOSITORY,
+		});
+		core.debug("GITHUB_REPOSITORY:" + repoName);
+		const repo = new Repo(repoName);
 		await repo.load();
 		core.debug(inspect(repo));
 		core.debug("repo loaded");
