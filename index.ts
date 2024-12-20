@@ -1,5 +1,7 @@
 import * as core from "@actions/core";
 
+core.debug("index.ts");
+
 import getInput from "./lib/input";
 import { Repo } from "./lib/repo";
 import { Ref } from "./lib/ref";
@@ -7,7 +9,6 @@ import { getBlobsFromFiles } from "./lib/blob";
 import { Tree } from "./lib/tree";
 import { Commit } from "./lib/commit";
 
-core.debug("index.ts");
 export default async function run(): Promise<void> {
 	core.debug("index.ts run");
 	try {
