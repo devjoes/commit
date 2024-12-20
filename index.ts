@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 
-core.debug("index.ts");
+core.info("index.ts");
 
 import getInput from "./lib/input";
 import { Repo } from "./lib/repo";
