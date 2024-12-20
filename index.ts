@@ -9,6 +9,7 @@ import { Ref } from "./lib/ref";
 import { getBlobsFromFiles } from "./lib/blob";
 import { Tree } from "./lib/tree";
 import { Commit } from "./lib/commit";
+import { inspect } from "util";
 
 export default async function run(): Promise<void> {
 	core.debug("index.ts run");
@@ -17,6 +18,7 @@ export default async function run(): Promise<void> {
 		core.debug("GITHUB_REPOSITORY:" + process.env.GITHUB_REPOSITORY);
 		const repo = new Repo(process.env.GITHUB_REPOSITORY);
 		await repo.load();
+		core.debug(inspect(repo));
 		core.debug("repo loaded");
 
 		// Get inputs

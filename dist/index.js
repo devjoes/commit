@@ -8696,6 +8696,7 @@ core.info("index.ts");
 
 
 
+
 function run() {
     return index_awaiter(this, void 0, void 0, function* () {
         core.debug("index.ts run");
@@ -8704,6 +8705,7 @@ function run() {
             core.debug("GITHUB_REPOSITORY:" + process.env.GITHUB_REPOSITORY);
             const repo = new Repo(process.env.GITHUB_REPOSITORY);
             yield repo.load();
+            core.debug((0,external_util_.inspect)(repo));
             core.debug("repo loaded");
             // Get inputs
             const files = getInput("files");
