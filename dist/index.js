@@ -8362,6 +8362,8 @@ function getInput(name, options = {}) {
     return value;
 }
 
+// EXTERNAL MODULE: external "util"
+var external_util_ = __nccwpck_require__(9023);
 // EXTERNAL MODULE: ./node_modules/axios/index.js
 var axios = __nccwpck_require__(4922);
 var axios_default = /*#__PURE__*/__nccwpck_require__.n(axios);
@@ -8410,6 +8412,8 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
     });
 };
 
+
+
 class Repo extends Resource {
     constructor(nameWithOwner) {
         super();
@@ -8425,14 +8429,14 @@ class Repo extends Resource {
     }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.github.get("/user");
+            core.debug((0,external_util_.inspect)(user));
             const response = yield this.github.get(`/repos/${this.nameWithOwner}`);
             this.defaultBranchRef = response.data.default_branch;
         });
     }
 }
 
-// EXTERNAL MODULE: external "util"
-var external_util_ = __nccwpck_require__(9023);
 ;// CONCATENATED MODULE: ./lib/ref.ts
 var ref_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -8689,9 +8693,7 @@ var index_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _ar
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-console.log("FML!");
 
-core.info("index.ts");
 
 
 
@@ -8701,7 +8703,6 @@ core.info("index.ts");
 
 function run() {
     return index_awaiter(this, void 0, void 0, function* () {
-        core.debug("index.ts run");
         try {
             // Get repo
             const repoName = getInput("repo", {

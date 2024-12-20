@@ -1,8 +1,4 @@
-console.log("FML!");
 import * as core from "@actions/core";
-
-core.info("index.ts");
-
 import getInput from "./lib/input";
 import { Repo } from "./lib/repo";
 import { Ref } from "./lib/ref";
@@ -12,7 +8,6 @@ import { Commit } from "./lib/commit";
 import { inspect } from "util";
 
 export default async function run(): Promise<void> {
-	core.debug("index.ts run");
 	try {
 		// Get repo
 		const repoName = getInput("repo", {
